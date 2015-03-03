@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.gcmclientapp"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="15"
+        android:targetSdkVersion="17" />
+	<uses-permission android:name="android.permission.GET_ACCOUNTS"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE"/>
+     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    
+    <permission android:name="com.google.gcmclientapp.permission.C2D_MESSAGE"
+        android:protectionLevel="signature"></permission>
+    <uses-permission android:name="com.google.gcmclientapp.permission.C2D_MESSAGE"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/umi1"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name="com.example.gcmclientapp.MainActivity"
+            android:label="LOGIN" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAINACTIVITY" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        
+        
+        <activity
+            android:name="com.example.gcmclientapp.ListUsers"
+            android:label="USER" >
+            <intent-filter>
+                <action android:name="android.intent.action.LISTUSERS" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        
+        <activity
+            android:name="com.example.gcmclientapp.GcmServer"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.GCMSERVER" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        
+         <activity
+            android:name="com.example.gcmclientapp.splash"
+            android:label="@string/app_name" 
+         >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+       
+        
+        <receiver 
+        android:name=".GcmReceiver"
+        android:permission="com.google.android.c2dm.permission.SEND"> 
+        <intent-filter>
+            <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+            <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
+        
+            <category android:name="com.google.gcmclientapp"/>
+        </intent-filter>   
+        </receiver>
+        
+        <service 
+           android:name=".GcmMessageHandler" 
+        />
+    </application>
+    <!--  Internet Permissions -->
+    
+
+</manifest>
